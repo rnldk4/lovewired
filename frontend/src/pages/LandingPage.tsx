@@ -4,8 +4,17 @@ import Signup from "../components/landingpage/Signup";
 import ParagraphLanding from "../components/landingpage/ParagraphLanding";
 import Ring1 from "../components/landingpage/Ring1";
 import Ring2 from "../components/landingpage/Ring2";
+import { useEffect } from "react";
 
 export default function LandingPage() {
+    useEffect(() => {
+        document.body.classList.add("overflow-hidden");
+
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+        };
+    }, []);
+
     return (
         <>
             <Header />
