@@ -5,14 +5,39 @@ export default function Signup() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    function handleSignup(e: any) {
+    async function handleSignup(e: any) {
         e.preventDefault();
-        console.log(`Signup - email: ${email}, password: ${password}`);
 
         if (!email.includes("@") || !email.includes(".")) {
             setError("Please enter a valid email address.");
         } else {
             setError("");
+        }
+
+        if (error === "") {
+            try {
+                const response = await fetch("http://localhost:3000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                });
+
+                const responseMessage = await response.text();
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Error occurred - status: ${response.status} text: ${responseMessage}`
+                    );
+                }
+                console.log(responseMessage);
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 
