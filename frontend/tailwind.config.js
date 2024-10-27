@@ -11,10 +11,10 @@ export default {
                 unbounded: ["Unbounded"],
             },
             animation: {
-                "pop-in": "pop-in 0.2s cubic-bezier(0.34, 1.2, 0.64, 1)",
+                modalpop: "modalpop 0.2s cubic-bezier(0.34, 1.2, 0.64, 1)",
             },
             keyframes: {
-                "pop-in": {
+                modalpop: {
                     "0%": {
                         transform: "scale(0.8)",
                         opacity: "0",
