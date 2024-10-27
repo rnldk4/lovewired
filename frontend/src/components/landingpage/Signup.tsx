@@ -21,7 +21,7 @@ export default function Signup() {
                     </div>
                     <button
                         type="button"
-                        className="w-28 h-10 rounded-full bg-rose-100 font-outfit"
+                        className="w-28 h-10 rounded-full bg-black text-white font-outfit"
                     >
                         sign up
                     </button>
