@@ -4,6 +4,7 @@ import connectSessionSequelize from "connect-session-sequelize";
 import dotenv from "dotenv";
 import express from "express";
 import session from "express-session";
+import cors from "cors";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -17,6 +18,7 @@ const SequelizeStore = connectSessionSequelize(session.Store);
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use(
     session({
@@ -66,17 +68,18 @@ app.get("/users", isAuthenticated, async (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
     try {
         const newUser = await prisma.user.create({
             data: {
-                username: username,
                 email: email,
                 password: password,
             },
         });
-        res.status(201).send(`${newUser} is now registered in the database`);
+        res.status(201).send(
+            `User with ID ${newUser.id} and email ${newUser.email} is now registered in the database` //FIXME: username issue
+        );
     } catch (err) {
         console.log(err);
         res.status(500).send("Error posting data");
