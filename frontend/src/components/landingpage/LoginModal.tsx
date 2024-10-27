@@ -18,7 +18,7 @@ export default function LoginModal({
 
     function handleLogin(e: any) {
         e.preventDefault();
-        console.log(`email: ${email}, password: ${password}`);
+        console.log(`Login - email: ${email}, password: ${password}`);
 
         if (!email.includes("@") || !email.includes(".")) {
             setError("Please enter a valid email address.");
@@ -39,7 +39,7 @@ export default function LoginModal({
                     className="flex flex-col space-y-10 w-96 ml-6 mt-16 mr-6"
                     onSubmit={handleLogin}
                 >
-                    <div className="relative">
+                    <div>
                         <input
                             type="text"
                             id="email"
