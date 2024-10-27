@@ -29,7 +29,7 @@ export default function LoginModal({
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
-            <div className="bg-white rounded-lg relative pb-10">
+            <div className="bg-white rounded-lg relative pb-10 animate-pop-in">
                 <img
                     src={x}
                     className="absolute right-4 top-4 cursor-pointer"
