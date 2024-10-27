@@ -15,8 +15,12 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <div className="flex justify-between w-full mt-4">
-                <img src={logo} className="rounded-full w-36 ml-6" alt="Logo" />
+            <div className="flex justify-between w-full mt-8">
+                <img
+                    src={logo}
+                    className="rounded-full w-36 ml-24"
+                    alt="Logo"
+                />
                 <div className="flex font-poppins items-center mb-8 space-x-20 text-3xl mr-24">
                     <p>contact us</p>
                     <p onClick={handleLoginClick} className="cursor-pointer">

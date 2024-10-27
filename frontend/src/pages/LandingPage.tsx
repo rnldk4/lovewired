@@ -19,12 +19,12 @@ export default function LandingPage() {
         <>
             <Header />
             <MainBears />
-            <div className="ml-10">
+            <div className="ml-24">
                 <ParagraphLanding />
                 <Signup />
-                <Ring1></Ring1>
-                <Ring2></Ring2>
             </div>
+            <Ring1></Ring1>
+            <Ring2></Ring2>
         </>
     );
 }

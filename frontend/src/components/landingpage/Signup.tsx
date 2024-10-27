@@ -18,7 +18,7 @@ export default function Signup() {
 
     return (
         <>
-            <div className="max-w-sm mt-20 ml-12">
+            <div className="max-w-sm mt-20">
                 <form
                     className="flex flex-col space-y-10"
                     onSubmit={handleSignup}

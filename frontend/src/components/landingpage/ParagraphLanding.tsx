@@ -1,9 +1,9 @@
 export default function ParagraphLanding() {
     return (
         <>
-            <h1 className="font-unbounded text-8xl mt-20 ml-12">get closer</h1>
+            <h1 className="font-unbounded text-8xl mt-20">get closer</h1>
             <div className="font-sarabun text-xl">
-                <p className="mt-4 ml-12 max-w-[60rem]">
+                <p className="mt-4 max-w-[60rem]">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
