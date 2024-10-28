@@ -30,17 +30,20 @@ export default function LoginModal({
 
         if (error === "") {
             try {
-                const response = await fetch("http://localhost:3000/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                    }),
-                });
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/login`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            email: email,
+                            password: password,
+                        }),
+                    }
+                );
 
                 const responseMessage = await response.text();
 

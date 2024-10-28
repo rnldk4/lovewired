@@ -5,10 +5,13 @@ export default function HomePage() {
 
     async function handleLogout() {
         try {
-            const response = await fetch("http://localhost:3000/logout", {
-                method: "POST",
-                credentials: "include",
-            });
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/logout`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                }
+            );
 
             const responseMessage = await response.text();
 
