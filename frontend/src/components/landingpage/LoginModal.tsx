@@ -1,5 +1,6 @@
 import { useState } from "react";
 import x from "../../assets/x.svg";
+import { useNavigate } from "react-router-dom";
 
 interface LoginModalProps {
     modalOpened: boolean;
@@ -15,6 +16,7 @@ export default function LoginModal({
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     async function handleLogin(e: any) {
         e.preventDefault();
@@ -48,6 +50,7 @@ export default function LoginModal({
                     );
                 }
                 console.log(responseMessage);
+                navigate("/home");
             } catch (error) {
                 console.error(error);
             }
