@@ -118,6 +118,14 @@ app.post("/login", async (req, res) => {
     }
 });
 
+app.get("/check-session", (req, res) => {
+    isAuthenticated(req, res, () => {
+        res.status(200).send(
+            `Already logged in as ${req.session.user.username}`
+        );
+    });
+});
+
 app.post("/logout", (req, res) => {
     req.session.destroy((err) => {
         if (err) {

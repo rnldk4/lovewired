@@ -1,12 +1,34 @@
 import React, { useState } from "react";
 import logo from "../../assets/placeholderlogo.png";
 import LoginModal from "./LoginModal";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
     const [modalOpened, setModalOpened] = useState<boolean>(false);
+    const navigate = useNavigate();
 
-    function handleLoginClick() {
-        setModalOpened(true);
+    async function handleLoginClick() {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/check-session`,
+                {
+                    method: "GET",
+                    credentials: "include",
+                }
+            );
+
+            const responseMessage = await response.text();
+
+            if (!response.ok) {
+                throw new Error(`Error occurred - ${responseMessage}`);
+            }
+
+            console.log(responseMessage);
+            navigate("/home");
+        } catch (err) {
+            console.log(err);
+            setModalOpened(true);
+        }
     }
 
     function handleContactClick() {
