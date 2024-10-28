@@ -11,12 +11,12 @@ export default function LoginModal({
     modalOpened,
     handleCloseClick,
 }: LoginModalProps) {
-    if (!modalOpened) return null;
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    if (!modalOpened) return null;
 
     async function handleLogin(e: any) {
         e.preventDefault();
