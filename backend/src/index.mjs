@@ -22,7 +22,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173", //local dev
-            "https://lovewired.vercel.app", //vercel deployment
+            "https://lovewired.net",
         ],
         credentials: true,
     })
