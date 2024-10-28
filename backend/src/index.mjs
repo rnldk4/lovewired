@@ -18,7 +18,15 @@ const SequelizeStore = connectSessionSequelize(session.Store);
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+    cors({
+        origin: [
+            "http://localhost:5173", //local dev
+            "https://lovewired.vercel.app", //vercel deployment
+        ],
+        credentials: true,
+    })
+);
 
 app.use(
     session({
@@ -78,7 +86,7 @@ app.post("/register", async (req, res) => {
             },
         });
         res.status(201).send(
-            `User with ID ${newUser.id} and email ${newUser.email} is now registered in the database` //FIXME: username issue
+            `User with ID ${newUser.id} and email ${newUser.email} is now registered in the database`
         );
     } catch (err) {
         console.log(err);
