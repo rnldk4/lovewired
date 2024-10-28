@@ -16,7 +16,7 @@ export default function LoginModal({
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    function handleLogin(e: any) {
+    async function handleLogin(e: any) {
         e.preventDefault();
         console.log(`Login - email: ${email}, password: ${password}`);
 
@@ -24,6 +24,32 @@ export default function LoginModal({
             setError("Please enter a valid email address.");
         } else {
             setError("");
+        }
+
+        if (error === "") {
+            try {
+                const response = await fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                });
+
+                const responseMessage = await response.text();
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Error occurred - status: ${response.status} text: ${responseMessage}`
+                    );
+                }
+                console.log(responseMessage);
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 
