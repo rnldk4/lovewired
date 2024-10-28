@@ -8,9 +8,12 @@ import cors from "cors";
 
 dotenv.config();
 const PORT = process.env.PORT;
+const SESSION_SECRET = process.env.SESSION_SECRET;
+const DATABASE_URL = process.env.DATABASE_URL;
+const PRODUCTION_STATE = process.env.ENVIRONMENT === "production";
 
 const prisma = new PrismaClient();
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(DATABASE_URL, {
     dialect: "mysql",
 });
 const SequelizeStore = connectSessionSequelize(session.Store);
@@ -20,25 +23,25 @@ const app = express();
 app.use(express.json());
 app.use(
     cors({
-        origin: [
-            "http://localhost:5173", //local dev
-            "https://lovewired.net",
-        ],
+        origin: ["http://localhost:5173", "https://lovewired.net"],
         credentials: true,
     })
 );
 
 app.use(
     session({
-        secret: "fakesecret",
+        secret: SESSION_SECRET,
         store: new SequelizeStore({
             db: sequelize,
             tableName: "Session",
         }),
         saveUninitialized: false,
         resave: false,
+        proxy: true,
         cookie: {
             maxAge: 60000 * 30,
+            secure: PRODUCTION_STATE,
+            httpOnly: true,
         },
     })
 );
